@@ -1,13 +1,23 @@
 @font-face {
     font-family: 'SF-Pro';
-    src: url('/items/SF-Pro.ttf') format("opentype");
+    src: url('items/SF-Pro.ttf') format("opentype");
+}
+
+@font-face {
+    font-family: "SF-Pro Thin";
+    src: url('items/SF-Pro-Rounded-Thin.otf') format("opentype");
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: SF-Pro;
+    font-family: "SF-Pro Thin";
+    font-style: normal;
+
+}
+h2 {
+    font-size: 20px;
 }
 
 section {
