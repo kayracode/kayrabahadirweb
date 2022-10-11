@@ -2,7 +2,6 @@
     font-family: 'SF-Pro';
     src: url('items/SF-Pro.ttf') format("opentype");
 }
-
 @font-face {
     font-family: "SF-Pro Thin";
     src: url('items/SF-Pro-Rounded-Thin.otf') format("opentype");
@@ -14,8 +13,8 @@
     box-sizing: border-box;
     font-family: "SF-Pro Thin";
     font-style: normal;
-
 }
+
 h1 {
     font-size: 100px;
 }
@@ -31,22 +30,45 @@ section {
     justify-content: center;
     align-items: center;
 }
-
 .container {
     scroll-snap-type: y mandatory;
     overflow-y: scroll;
     height: 100vh;
 }
 
+/* ANYTHING TO DO WITH PAGE ONE */
 .pageOne {
     background: whitesmoke;
 }
+.pageOne h2 {
+    background: linear-gradient(black, whitesmoke);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+/* ***************************** */
+
+
+/* ANYTHING TO DO WITH PAGE TWO */
 .pageTwo {
     background: whitesmoke;
 }
+/* ***************************** */
+
+
+/* ANYTHING TO DO WITH PAGE THREE */
 .pageThree {
     background: whitesmoke;
 }
+/* ***************************** */
+
+
+/* ANYTHING TO DO WITH PAGE FOUR */
 .pageFour {
     background: whitesmoke;
 }
+.pageFour h1 {
+    background: linear-gradient(to Right, red, orange);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+/* ***************************** */
