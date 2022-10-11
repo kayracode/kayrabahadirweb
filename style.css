@@ -6,6 +6,17 @@
     font-family: "SF-Pro Thin";
     src: url('items/SF-Pro-Rounded-Thin.otf') format("opentype");
 }
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 
 * {
     margin: 0;
@@ -44,6 +55,7 @@ section {
     background: linear-gradient(black, whitesmoke);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    animation: fade 1s ease-in;
 }
 /* ***************************** */
 
