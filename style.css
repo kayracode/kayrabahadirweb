@@ -66,28 +66,48 @@ body {
 ::-webkit-scrollbar-thumb {
 background-color: #000000;
 }
-a {
-  text-decoration: none;
-  color: white;
-}
 .footer {
   position: fixed;
-  bottom: 10px;
+  bottom: 15px;
+  left: 0;
+  right: 0;
   margin: auto;
   text-align: center;
   width: 100%;
   overflow: hidden;
-}
-ul {
-  display: flex;
   list-style-type: none;
   z-index: 1000;
   pointer-events: all;
-}
-li {
-  flex: auto ;
+  display: flex;
   align-items: center;
-  display:inline;
+  justify-content: center;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+li {
+  font-size: 1vw;
   line-height: 1.0625; /* The height Apple used to tighten up the spacing a bit. */
   font-weight: 400; /* Nice, chunky, bold! */
+  text-align:center;
+  margin: 0 10px;
+  display: inline-block;
+  width: 400px; /* set a fixed width */
+}
+
+@media (max-width: 767px) {
+    .flex-container {
+        flex-wrap: wrap;
+    }
+    li {
+        text-align: center;
+        display: block;
+        margin-bottom: 10px;
+        font-size: 3vw;
+    }
 }
