@@ -1,5 +1,4 @@
-import './style.css'
-import * as THREE from 'three'
+import * as THREE from "../node_modules/three/build/three.module.js"
 
 // Create the scene and the camera
 const scene = new THREE.Scene()
@@ -58,17 +57,12 @@ window.addEventListener("click", function() {
   light.color.set(colors[colorSwitch])
 } );
 
-var angle = 0
 function animate() {
   requestAnimationFrame(animate)
   torusKnot.rotation.x += 0.002
   torusKnot.rotation.y += 0.002
 
   renderer.render(scene, camera)
-
-  angle -= 0.02;
-  spotLight.position.x = 10 + 14 * Math.sin(angle)
-  spotLight.position.y = 10 + 15 * Math.cos(angle)
 }
 animate()
 
