@@ -35,7 +35,7 @@ body {
   margin-top: 2vw;
   line-height: 1.0625;
   font-weight: 300;
-  font-size: 19.5vw;
+  font-size: 15.5vw;
   letter-spacing: -0.77vw;
 }
 .pageOne h3 {
@@ -43,7 +43,7 @@ body {
   font-weight: 300; /* Nice, chunky, bold! */
   font-size: 3.5vw;
   letter-spacing: -0.1vw;
-  margin-top: -12vw;
+  margin-top: -6vw;
   margin-left: 1vw;
 }
 .pageOne h6 {
@@ -71,10 +71,10 @@ a {
   color: white;
 }
 ul {
-  margin-top: 6vw;
+  margin-top: 15vw;
   display: flex;
   list-style-type: none;
-  margin-left: 15%;
+  margin-left: 8%;
   z-index: 1000;
   pointer-events: all;
 }
