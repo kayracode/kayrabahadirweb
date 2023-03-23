@@ -27,7 +27,7 @@ const light = new THREE.PointLight( 0xffffff, brightness, 4);
 scene.add(light);
 light.position.setZ(1)
 light.position.setX(3)
-light.position.setY(1)
+light.position.setY(-1)
 
 // Add an event listener to the canvas that listens for mouse movements.
 renderer.domElement.addEventListener('mousemove', onMouseMove, false);
