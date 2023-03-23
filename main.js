@@ -11,7 +11,7 @@ renderer.setPixelRatio(devicePixelRatio)
 document.body.appendChild(renderer.domElement)
 
 // Create the torusknot
-const torusGeo = new THREE.TorusKnotGeometry( 1, 0.4, 200, 20 );
+const torusGeo = new THREE.TorusKnotGeometry( 2.3, 0.8, 200, 20 );
 const material = new THREE.MeshPhongMaterial( { color: 0x222222 } );
 material.flatShading = false;
 material.shininess = 40000;
@@ -19,21 +19,22 @@ material.wireframe = true;
 
 const torusKnot = new THREE.Mesh(torusGeo, material);
 scene.add(torusKnot);
-torusKnot.position.set(0, 0, 1)
+torusKnot.position.set(0.5, 0, -2)
 
 // Create a light that follows the mouse
 var brightness = 40;
 const light = new THREE.PointLight( 0xffffff, brightness, 4);
 scene.add(light);
-light.position.setZ(0)
+light.position.setZ(1)
 light.position.setX(3)
+light.position.setY(1)
 
 // Add an event listener to the canvas that listens for mouse movements.
 renderer.domElement.addEventListener('mousemove', onMouseMove, false);
 function onMouseMove(event) {
   var x = (event.clientX / window.innerWidth) * 2 - 1;
   var y = - (event.clientY / window.innerHeight) * 2 + 1;
-  var vector = new THREE.Vector3(x, y, 0.5);
+  var vector = new THREE.Vector3(x, y, 1);
   vector.unproject(camera);
   var dir = vector.sub(camera.position).normalize();
   var distance = - camera.position.z / dir.z;
