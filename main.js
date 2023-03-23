@@ -11,28 +11,22 @@ renderer.setPixelRatio(devicePixelRatio)
 document.body.appendChild(renderer.domElement)
 
 // Create the torusknot
-const torusGeo = new THREE.TorusKnotGeometry( 3, 0.7, 200, 20 );
+const torusGeo = new THREE.TorusKnotGeometry( 1, 0.4, 200, 20 );
 const material = new THREE.MeshPhongMaterial( { color: 0x222222 } );
 material.flatShading = false;
 material.shininess = 40000;
-material.wireframe = false;
+material.wireframe = true;
+
 const torusKnot = new THREE.Mesh(torusGeo, material);
 scene.add(torusKnot);
-torusKnot.position.set(0, 0, -1)
+torusKnot.position.set(0, 0, 1)
 
 // Create a light that follows the mouse
-var brightness = 30;
+var brightness = 40;
 const light = new THREE.PointLight( 0xffffff, brightness, 4);
 scene.add(light);
-light.position.setZ(5)
-
-const centerLight = new THREE.PointLight( 0x222222, brightness, 4);
-scene.add(centerLight);
-centerLight.position.setZ(2)
-
-const directionalLight = new THREE.DirectionalLight( 0xffffff, .4);
-scene.add(directionalLight);
-directionalLight.position.set(10,-300,0)
+light.position.setZ(0)
+light.position.setX(3)
 
 // Add an event listener to the canvas that listens for mouse movements.
 renderer.domElement.addEventListener('mousemove', onMouseMove, false);
@@ -47,16 +41,50 @@ function onMouseMove(event) {
   light.position.copy(pos);
 }
 
+// For mobile
+// Add an event listener to the canvas that listens for touch scrolls.
+renderer.domElement.addEventListener('touchstart', onTouchStart, false);
+function onTouchStart(event) {
+  updateLightPosition(event.touches[0].clientX, event.touches[0].clientY);
+}
+renderer.domElement.addEventListener('touchmove', onTouchMove, false);
+function onTouchMove(event) {
+  event.preventDefault();
+  updateLightPosition(event.touches[0].clientX, event.touches[0].clientY);
+}
+function updateLightPosition(x, y) {
+  const vector = new THREE.Vector3(
+    (x / window.innerWidth) * 2 - 1,
+    - (y / window.innerHeight) * 2 + 1,
+    0.5
+  );
+  vector.unproject(camera);
+  const direction = vector.sub(camera.position).normalize();
+  const distance = -camera.position.z / direction.z;
+  const position = camera.position.clone().add(direction.multiplyScalar(distance));
+  light.position.copy(position);
+}
+
+// For the color of the light to flick
+// Also turns on wireframe when color options finish
 var colorSwitch = 0
 window.addEventListener("click", function() {
-  const colors = [0xffffff, 0xff0000, 0x00ff00, 0x0000ff, 0xffff00, 0xff00ff, 0x00ffff]
+  const colors = [0xffffff, 0x836953, 0x4C0013, 0x192841]
   colorSwitch++
-  if(colorSwitch > 6) {
+  if(colorSwitch > colors.length - 1) {
     colorSwitch = 0
+    if(material.wireframe) {
+      material.wireframe = false;
+      material.flatShading = false; 
+    } else {
+      material.wireframe = true;
+      material.flatShading = true; 
+    }
   }
   light.color.set(colors[colorSwitch])
 } );
 
+// The main animate function
 function animate() {
   requestAnimationFrame(animate)
   torusKnot.rotation.x += 0.002
@@ -66,3 +94,18 @@ function animate() {
 }
 animate()
 
+
+document.body.onmousemove = function(e) {
+  document.documentElement.style.setProperty (
+    '--x', (
+      e.clientX+window.scrollX
+    )
+    + 'px'
+  );
+  document.documentElement.style.setProperty (
+    '--y', (
+      e.clientY+window.scrollY
+    ) 
+    + 'px'
+  );
+}
